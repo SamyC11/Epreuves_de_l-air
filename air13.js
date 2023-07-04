@@ -11,7 +11,9 @@ const args = [process.argv[2],process.argv[3], process.argv[4]];
 const options = {
     stdio: 'ignore',
   };
-
+  
+const green = (text) => `\x1b[32m${text}\x1b[0m`; // Vert
+const red = (text) => `\x1b[31m${text}\x1b[0m`; // Rouge
 let currentIndex = 0;
 
 function processNextFile() {
@@ -30,11 +32,11 @@ function processNextFile() {
       }
 
       const process = childProcess.spawnSync('node', [filePath, ...args], options);
-        if (process.status === 0) {
-          console.log(`${filePath} (1/1) : success`);
-        } else {
-          console.log(`${filePath} (1/1) : failure`);
-        }
+      if (process.status === 0) {
+        console.log(`${filePath} (1/1) : ${green('success')}`);
+      } else {
+        console.log(`${filePath} (1/1) : ${red('failure')}`);
+      }
         currentIndex++;
         processNextFile();
       });
