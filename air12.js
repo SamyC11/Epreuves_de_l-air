@@ -2,16 +2,13 @@
 function isError(input) {
     if (input===undefined || input.length<3 || input.includes(NaN)) {
         return true;
+    }
+    for (let i = 0; i < input.length; i++) {
+        if (!isNaN(input[i])) {
+        return true;
+        } 
     }return false;
 }
-function isOnlyNumbers(array) {
-    for (let i = 0; i < array.length; i++) {
-        if (isNaN(array[i])) {
-        return false;
-        }
-    } return true;
-}
-
 
 function quickSort (array){
     if (array.length<2)
@@ -36,7 +33,9 @@ let greater = [];
 //ERROR HANDLING
 const commandLineInput = process.argv.slice(2);
 
-if (isError(commandLineInput) || !isOnlyNumbers(commandLineInput)) {
+
+console.log(commandLineInput);
+if (isError(commandLineInput)) { 
     console.log("error");
     process.exit(1);
 }
