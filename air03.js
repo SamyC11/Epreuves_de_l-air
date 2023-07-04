@@ -20,7 +20,7 @@ const intruderValues = commandLineInput.filter(function(element,index,arr) {
     return arr.indexOf(element) === arr.lastIndexOf(element)
 });
 //DISPLAY
-console.log(intruderValues);
+console.log(intruderValues.join(" "));
 
 
 
